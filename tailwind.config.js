@@ -5,10 +5,16 @@ module.exports = {
         "./App.{js,jsx,ts,tsx}",
         "./src/components/**/*.{js,jsx,ts,tsx}",
         "./src/screens/**/*.{js,jsx,ts,tsx}",
+        "./src/features/**/*.{js,jsx,ts,tsx}",
     ],
     presets: [require("nativewind/preset")],
     theme: {
         extend: {
+            fontFamily: {
+                poppins: ["Poppins-Regular"],
+                "poppins-semibold": ["Poppins-SemiBold"],
+                "poppins-bold": ["Poppins-Bold"],
+            },
             borderRadius: {
                 "3xl": "24px",
                 "4xl": "32px",
