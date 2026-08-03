@@ -1,19 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // NOTE: Update this to include the paths to all files that contain Nativewind classes.
-  content: [
-    './App.{js,jsx,ts,tsx}',
-    './src/components/**/*.{js,jsx,ts,tsx}',
-    './src/screens/**/*.{js,jsx,ts,tsx}',
-  ],
-  presets: [require('nativewind/preset')],
-  theme: {
-    extend: {
-      borderRadius: {
-        '3xl': '24px',
-        '4xl': '32px',
-      }
+    // NOTE: Update this to include the paths to all files that contain Nativewind classes.
+    content: [
+        "./App.{js,jsx,ts,tsx}",
+        "./src/components/**/*.{js,jsx,ts,tsx}",
+        "./src/screens/**/*.{js,jsx,ts,tsx}",
+    ],
+    presets: [require("nativewind/preset")],
+    theme: {
+        extend: {
+            borderRadius: {
+                "3xl": "24px",
+                "4xl": "32px",
+            },
+            colors: {
+                primary: "#F2FFF2",
+            },
+        },
     },
-  },
-  plugins: [],
+    plugins: [],
 }
