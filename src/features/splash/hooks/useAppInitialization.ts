@@ -1,4 +1,4 @@
-import { useRestoreSession } from "@/features/auth/hook/useRestoreSession"
+import { useRestoreSession } from "@/features/auth/hooks/useRestoreSession"
 import { useFonts } from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 import { useEffect, useState } from "react"

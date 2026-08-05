@@ -2,6 +2,7 @@ import { useQueryClient } from "@tanstack/react-query"
 import { logout } from "../services/authService"
 import { router } from "expo-router"
 import { useAuthStore } from "../store/authStore"
+import { ROUTES } from "@/shared/constants/routeConstant"
 
 export function useLogout() {
     const queryClient = useQueryClient()
@@ -15,7 +16,7 @@ export function useLogout() {
 
         queryClient.clear()
 
-        router.replace("/(auth)/login")
+        router.replace(ROUTES.LOGIN)
     }
 
     return {

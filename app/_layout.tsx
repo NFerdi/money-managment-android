@@ -9,6 +9,7 @@ import { Stack } from "expo-router"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { useAppInitialization } from "@/features/splash/hooks/useAppInitialization"
 import AnimatedSplash from "@/features/splash/components/AnimatedSplash"
+import Toast from "react-native-toast-message"
 
 const queryClient = new QueryClient()
 
@@ -27,6 +28,7 @@ export default function RootLayout() {
                 ) : (
                     <Stack screenOptions={{ headerShown: false }} />
                 )}
+                <Toast position="bottom" visibilityTime={3000} />
             </SafeAreaProvider>
         </QueryClientProvider>
     )

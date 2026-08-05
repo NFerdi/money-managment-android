@@ -4,6 +4,8 @@ import { saveToken } from "../utils/secureStore"
 import { useAuthStore } from "../store/authStore"
 import { useMutation } from "@tanstack/react-query"
 import { router } from "expo-router"
+import Toast from "react-native-toast-message"
+import { ROUTES } from "@/shared/constants/routeConstant"
 
 export const useLogin = () => {
     const login = useAuthStore((state) => state.login)
@@ -21,7 +23,14 @@ export const useLogin = () => {
 
             login(me.data, token)
 
-            router.replace("/(dashboard)/dashboard")
+            router.replace(ROUTES.DASHBOARD)
+        },
+        onError: (error) => {
+            Toast.show({
+                type: "error",
+                text1: "Login gagal",
+                text2: error.message,
+            })
         },
     })
 }

@@ -1,4 +1,4 @@
-import { useRestoreSession } from "@/features/auth/hook/useRestoreSession"
+import { useRestoreSession } from "@/features/auth/hooks/useRestoreSession"
 import { useAuthStore } from "@/features/auth/store/authStore"
 import AnimatedSplash from "@/features/splash/components/AnimatedSplash"
 import { ROUTES } from "@/shared/constants/routeConstant"
