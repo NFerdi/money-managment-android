@@ -9,17 +9,11 @@ import { Control, Controller, FieldValues, Path } from "react-hook-form"
 import React, { useState } from "react"
 import Feather from "@react-native-vector-icons/feather"
 
-type Props = {
-    name: string
-    placeHolder: string
-    type: "generic" | "password"
-}
-
 interface AppTextInputProps<T extends FieldValues> extends TextInputProps {
     control: Control<T>
     name: Path<T>
     label: string
-    placeHolder: string
+    placeholder: string
     type: "generic" | "password"
 }
 
@@ -36,7 +30,10 @@ export default function CustomTextInput<T extends FieldValues>({
     return (
         <View className="gap-1">
             <Text className="font-poppins-semibold">{label}</Text>
-            <View className="flex-row items-center bg-white rounded-xl shadow-sm">
+            <View
+                className="flex-row items-center rounded-xl shadow-sm"
+                style={{ backgroundColor: "#fff", overflow: "hidden" }}
+            >
                 <Controller
                     control={control}
                     name={name}
@@ -46,7 +43,9 @@ export default function CustomTextInput<T extends FieldValues>({
                                 value={field.value}
                                 onChangeText={field.onChange}
                                 onBlur={field.onBlur}
-                                secureTextEntry={type === "password" && visible}
+                                placeholder={placeholder}
+                                placeholderTextColor="#9CA3AF"
+                                secureTextEntry={visible}
                                 className="flex-1 p-4 text-gray-500 rounded-xl"
                             />
                             {fieldState.error && (

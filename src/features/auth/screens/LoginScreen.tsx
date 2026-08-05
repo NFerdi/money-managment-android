@@ -3,15 +3,24 @@ import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import CustomTextInput from "@/shared/components/CustomTextInput"
 import { useForm } from "react-hook-form"
-import { LoginForm } from "../schemas/LoginSchema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { LoginForm, loginSchema } from "../schemas/loginSchema"
+import { useLogin } from "../hook/useLogin"
 
 export default function LoginScreen() {
     const { control, handleSubmit } = useForm<LoginForm>({
+        resolver: zodResolver(loginSchema),
         defaultValues: {
-            email: "",
-            password: "",
+            email: "ferdi@test.com",
+            password: "ferdidoang",
         },
     })
+
+    const loginMutation = useLogin()
+
+    const onSubmit = (data: LoginForm) => {
+        loginMutation.mutate(data)
+    }
 
     return (
         <SafeAreaView className="flex-1">
@@ -40,16 +49,16 @@ export default function LoginScreen() {
                 <View className="gap-4">
                     <CustomTextInput
                         label="Email"
-                        placeHolder="seseorang@gmail.com"
+                        placeholder="seseorang@gmail.com"
                         name="email"
                         type="generic"
                         control={control}
                     />
                     <CustomTextInput
-                        label="Email"
-                        placeHolder="*******"
-                        name="email"
-                        type="generic"
+                        label="Password"
+                        placeholder="*******"
+                        name="password"
+                        type="password"
                         control={control}
                     />
                 </View>
@@ -58,6 +67,7 @@ export default function LoginScreen() {
                     <TouchableOpacity
                         activeOpacity={0.9}
                         className="w-full py-4 bg-green-900 rounded-3xl "
+                        onPress={handleSubmit(onSubmit)}
                     >
                         <Text className="text-center text-white font-poppins-semibold">
                             Login Sekarang

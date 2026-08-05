@@ -1,27 +1,33 @@
 import "../global.css"
 import "react-native-reanimated"
 import "react-native-gesture-handler"
+import "@/config/interceptor"
 
+import { QueryClient } from "@tanstack/react-query"
+import { QueryClientProvider } from "@tanstack/react-query"
 import { Stack } from "expo-router"
-import { useFonts } from "expo-font"
 import { SafeAreaProvider } from "react-native-safe-area-context"
+import { useAppInitialization } from "@/features/splash/hooks/useAppInitialization"
+import AnimatedSplash from "@/features/splash/components/AnimatedSplash"
+
+const queryClient = new QueryClient()
 
 export default function RootLayout() {
-    const [fontsLoaded] = useFonts({
-        "Poppins-Regular": require("../src/assets/font/Poppins/Poppins-Regular.ttf"),
-        "Poppins-SemiBold": require("../src/assets/font/Poppins/Poppins-SemiBold.ttf"),
-        "Poppins-Bold": require("../src/assets/font/Poppins/Poppins-Bold.ttf"),
-    })
+    const { isReady, isSplashVisible, hideSplash } = useAppInitialization()
 
-    if (!fontsLoaded) return null
+    if (!isReady) {
+        return null
+    }
 
     return (
-        <SafeAreaProvider>
-            <Stack
-                screenOptions={{
-                    headerShown: false,
-                }}
-            />
-        </SafeAreaProvider>
+        <QueryClientProvider client={queryClient}>
+            <SafeAreaProvider>
+                {isSplashVisible ? (
+                    <AnimatedSplash onFinish={hideSplash} />
+                ) : (
+                    <Stack screenOptions={{ headerShown: false }} />
+                )}
+            </SafeAreaProvider>
+        </QueryClientProvider>
     )
 }
