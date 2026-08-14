@@ -8,13 +8,14 @@ import {
 import { Control, Controller, FieldValues, Path } from "react-hook-form"
 import React, { forwardRef, useState } from "react"
 import Feather from "@react-native-vector-icons/feather"
+import { formatCurrency } from "@/utils/formatCurrency"
 
 interface AppTextInputProps<T extends FieldValues> extends TextInputProps {
     control: Control<T>
     name: Path<T>
     label: string
     placeholder: string
-    type: "generic" | "password"
+    type: "generic" | "password" | "currency"
 }
 
 type CustomTextInputComponent = <T extends FieldValues>(
@@ -27,7 +28,7 @@ const CustomTextInput = forwardRef<TextInput, AppTextInputProps<FieldValues>>(
             control,
             name,
             label,
-            type,
+            type = "generic",
             placeholder,
             ...props
         }: AppTextInputProps<T>,
@@ -48,8 +49,18 @@ const CustomTextInput = forwardRef<TextInput, AppTextInputProps<FieldValues>>(
                                 <TextInput
                                     {...props}
                                     ref={ref}
-                                    value={field.value}
-                                    onChangeText={field.onChange}
+                                    value={
+                                        type === "currency"
+                                            ? formatCurrency(field.value ?? "")
+                                            : field.value?.toString()
+                                    }
+                                    onChangeText={(text) => {
+                                        if (type === "currency")
+                                            field.onChange(
+                                                Number(text.replace(/\D/g, ""))
+                                            )
+                                        else field.onChange(text)
+                                    }}
                                     onBlur={field.onBlur}
                                     placeholder={placeholder}
                                     secureTextEntry={

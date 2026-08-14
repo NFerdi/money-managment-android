@@ -4,8 +4,11 @@ interface User {
     id: number
     username: string
     email: string
-    avatar: string
+    avatar: string | null
+    setup_step: SetupStep
 }
+
+export type SetupStep = "WELCOME" | "WALLET" | "CATEGORY" | "BUDGET" | "COMPLETED"
 
 interface AuthStore {
     token: string | null

@@ -3,6 +3,7 @@ import React from "react"
 import { useAuthStore } from "@/features/auth/store/authStore"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useLogout } from "@/features/auth/hooks/useLogout"
+import second from "@expo/vector-icons/MaterialCommunityIcons"
 
 export default function DashboardScreen() {
     const user = useAuthStore((state) => state.user)

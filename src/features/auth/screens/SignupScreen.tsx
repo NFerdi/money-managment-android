@@ -1,18 +1,9 @@
-import {
-    View,
-    Text,
-    TouchableOpacity,
-    Image,
-    ActivityIndicator,
-    TextInput,
-    Keyboard,
-} from "react-native"
+import { View, Text, TouchableOpacity, Keyboard } from "react-native"
 import React, { useRef } from "react"
 import { SignupForm, signupSchema } from "../schemas/signupSchema"
 import { useSignup } from "../hooks/useSignup"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import CustomTextInput from "@/shared/components/CustomTextInput"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { router } from "expo-router"
 import { ROUTES } from "@/shared/constants/routeConstant"
