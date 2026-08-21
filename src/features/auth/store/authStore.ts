@@ -1,3 +1,4 @@
+import { SetupStepEnum } from "@/features/account/enitity/account.entity"
 import { create } from "zustand"
 
 interface User {
@@ -5,10 +6,8 @@ interface User {
     username: string
     email: string
     avatar: string | null
-    setup_step: SetupStep
+    setup_step: SetupStepEnum
 }
-
-export type SetupStep = "WELCOME" | "WALLET" | "CATEGORY" | "BUDGET" | "COMPLETED"
 
 interface AuthStore {
     token: string | null

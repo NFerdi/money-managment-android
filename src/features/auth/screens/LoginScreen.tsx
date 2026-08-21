@@ -16,9 +16,9 @@ import { useLogin } from "../hooks/useLogin"
 import { router } from "expo-router"
 import { ROUTES } from "@/shared/constants/routeConstant"
 import { TextInput } from "react-native-gesture-handler"
-import AuthButton from "@/features/auth/components/AuthButton"
 import AuthHeader from "../components/AuthHeader"
 import AuthLoginForm from "../components/AuthLoginForm"
+import ButtonSetup from "@/shared/components/ButtonSubmit"
 
 export default function LoginScreen() {
     const { control, handleSubmit } = useForm<LoginForm>({
@@ -48,12 +48,12 @@ export default function LoginScreen() {
                 />
 
                 <View className="gap-3">
-                    <AuthButton
-                        handleSubmit={handleSubmit(onSubmit)}
+                    <ButtonSetup
+                        onSubmit={handleSubmit(onSubmit)}
                         isPending={isPending}
                     >
-                        Login sekarang
-                    </AuthButton>
+                        <Text>Login sekarang</Text>
+                    </ButtonSetup>
                     <View className="flex-row gap-1 justify-center p-2">
                         <Text className="font-poppins">Belum punya akun?</Text>
                         <TouchableOpacity

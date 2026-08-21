@@ -3,10 +3,11 @@ import React, { useMemo, useRef } from "react"
 import { createWalletForm } from "@/features/wallet/schemas/CreateWalletSchema"
 import CustomTextInput from "@/shared/components/CustomTextInput"
 import { Control, UseFormWatch } from "react-hook-form"
-import { WalletProviderEntity } from "@/shared/types/entity/walletProviderEntity"
+import { WalletProviderEntity } from "@/features/wallet/entity/walletProviderEntity"
 import SelectInputForm from "@/shared/components/CustomSelectInput/SelectInputForm"
-import { WALLETTYPE } from "@/shared/constants/walletType"
 import { SelectInputRef } from "@/shared/components/CustomSelectInput/SelectInput"
+import { getBankLogo } from "@/utils/logoProvider"
+import { WALLETTYPE } from "@/features/wallet/constants/WalletType"
 
 type Props = {
     control: Control<createWalletForm>
@@ -20,16 +21,24 @@ export default function SetupWalletForm({ control, providers, watch }: Props) {
     const providerOption = useMemo(() => {
         return providers
             .filter((provider) => provider.type === type)
-            .map((provider) => ({
-                label: provider.name,
-                value: provider.id,
-            }))
+            .map((provider) => {
+                const LogoComponent = getBankLogo(provider.name)
+
+                return {
+                    label: provider.name,
+                    value: provider.id,
+                    icon: LogoComponent ? (
+                        <LogoComponent width={20} height={20} />
+                    ) : null,
+                }
+            })
     }, [type, providers])
 
     const walletTypeOption = useMemo(() => {
         return WALLETTYPE.map((wallet) => ({
             label: wallet.label,
             value: wallet.value,
+            icon: wallet.icon,
         }))
     }, [])
 
@@ -72,7 +81,7 @@ export default function SetupWalletForm({ control, providers, watch }: Props) {
                     control={control}
                     name="provider_id"
                     label="Provider"
-                    placeholder="BCA"
+                    placeholder={type === "BANK" ? "BCA" : "DANA"}
                 />
             )}
         </View>

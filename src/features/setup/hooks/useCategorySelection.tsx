@@ -3,7 +3,7 @@ import { DefaultCategory } from "@/features/category/enitity/category.entity"
 import { useEffect, useRef, useState } from "react"
 import { Animated } from "react-native"
 
-export const useCategorySelection = (defaultIds: number[] = [1, 2]) => {
+export const useCategorySelection = (defaultIds: number[] = []) => {
     const [activeTab, setActiveTab] = useState("INCOME")
     const [selectedIds, setSelectedIds] = useState<number[]>(defaultIds)
 

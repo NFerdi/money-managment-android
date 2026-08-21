@@ -1,4 +1,5 @@
-import { SetupStepEnum } from "../enums/typeSetupUserEnum"
+export type SetupStepEnum =
+    "WELCOME" | "WALLET" | "CATEGORY" | "BUDGET" | "COMPLETED"
 
 export interface AccountEntity {
     id: number

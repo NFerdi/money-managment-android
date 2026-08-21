@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Keyboard } from "react-native"
-import React, { useRef } from "react"
+import React from "react"
 import { SignupForm, signupSchema } from "../schemas/signupSchema"
 import { useSignup } from "../hooks/useSignup"
 import { useForm } from "react-hook-form"
@@ -7,9 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { router } from "expo-router"
 import { ROUTES } from "@/shared/constants/routeConstant"
-import AuthButton from "@/features/auth/components/AuthButton"
 import AuthHeader from "../components/AuthHeader"
 import AuthSignupForm from "../components/AuthSignupForm"
+import ButtonSetup from "@/shared/components/ButtonSubmit"
 
 export default function SignupScreen() {
     const { control, handleSubmit } = useForm<SignupForm>({
@@ -34,13 +34,12 @@ export default function SignupScreen() {
                 />
 
                 <View className="gap-3">
-                    <AuthButton
-                        handleSubmit={handleSubmit(onSubmit)}
+                    <ButtonSetup
+                        onSubmit={handleSubmit(onSubmit)}
                         isPending={isPending}
                     >
-                        Daftar sekarang
-                    </AuthButton>
-
+                        <Text>Daftar sekarang</Text>
+                    </ButtonSetup>
                     <View className="flex-row gap-1 justify-center p-2">
                         <Text className="font-poppins">Sudah punya akun?</Text>
 

@@ -1,4 +1,4 @@
-import { AccountEntity } from "@/features/account/account.entity"
+import { AccountEntity } from "@/features/account/enitity/account.entity"
 
 export const CATEGORY_TYPES = ["INCOME", "EXPENSE"] as const
 export type CategoryType = (typeof CATEGORY_TYPES)[number]

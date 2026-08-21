@@ -46,14 +46,14 @@ const SelectInput = forwardRef<SelectInputRef, SelectInputProps>(
         return (
             <View className="gap-1">
                 {!!label && (
-                    <Text className="mb-2 font-poppins-medium text-gray-700">
+                    <Text className="font-poppins-semibold text-gray-800">
                         {label}
                     </Text>
                 )}
 
                 <Pressable
                     onPress={open}
-                    className={`h-14 rounded-xl border px-4 flex-row items-center justify-between ${error ? "border-red-500" : "border-neutral-300"} ${disabled ? "opacity-50" : ""}`}
+                    className={`h-14 rounded-2xl border bg-surface px-4 flex-row items-center justify-between ${error ? "border-red-500" : "border-border"} ${disabled ? "opacity-50" : ""}`}
                 >
                     <View className="flex-row items-center flex-1">
                         {selected?.icon && (

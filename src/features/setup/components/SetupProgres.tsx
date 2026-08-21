@@ -1,13 +1,13 @@
 import { View, Text } from "react-native"
 import React from "react"
-import { SetupStep } from "@/features/auth/store/authStore"
 import { Ionicons } from "@expo/vector-icons"
+import { SetupStepEnum } from "@/features/account/enitity/account.entity"
 
 interface Props {
-    currentStep: SetupStep
+    currentStep: SetupStepEnum
 }
 
-const steps: SetupStep[] = [
+const steps: SetupStepEnum[] = [
     "WELCOME",
     "WALLET",
     "CATEGORY",
@@ -15,7 +15,7 @@ const steps: SetupStep[] = [
     "COMPLETED",
 ]
 
-const stepLabels: Record<SetupStep, string> = {
+const stepLabels: Record<SetupStepEnum, string> = {
     WELCOME: "Mulai",
     WALLET: "Dompet",
     CATEGORY: "Kategori",
@@ -24,7 +24,7 @@ const stepLabels: Record<SetupStep, string> = {
 }
 
 const stepIcons: Record<
-    SetupStep,
+    SetupStepEnum,
     {
         active: keyof typeof Ionicons.glyphMap
         inactive: keyof typeof Ionicons.glyphMap

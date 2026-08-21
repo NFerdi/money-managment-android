@@ -1,4 +1,4 @@
-import { TypeWallet } from "../enums/typeWalletEnum"
+import { TypeWallet } from "../../../shared/types/enums/typeWalletEnum"
 import { WalletEntity } from "./walletEntity"
 
 export interface WalletProviderEntity {

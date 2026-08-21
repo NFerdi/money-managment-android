@@ -2,7 +2,7 @@ import { View, Text, Keyboard } from "react-native"
 import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import SetupProgres from "../components/SetupProgres"
-import ButtonSetup from "../components/ButtonSetup"
+import ButtonSetup from "../../../shared/components/ButtonSubmit"
 import {
     createWalletForm,
     createWalletSchema,
@@ -41,6 +41,15 @@ export default function WalletSetupScreen() {
 
             <View className="flex-1">
                 <View className="px-4 py-4 border border-gray-100 rounded-3xl bg-white shadow-md gap-8">
+                    <View className="gap-1 mb-2">
+                        <Text className="text-xl text-center font-poppins-bold text-gray-800">
+                            Atur Dompet Utama
+                        </Text>
+                        <Text className="text-xs text-center font-poppins-regular text-gray-500">
+                            Masukkan detail akun keuangan yang sering kamu
+                            gunakan.
+                        </Text>
+                    </View>
                     <SetupWalletForm
                         watch={watch}
                         providers={providers ?? []}
@@ -50,9 +59,10 @@ export default function WalletSetupScreen() {
             </View>
             <ButtonSetup
                 onSubmit={handleSubmit(onSubmit)}
-                textContent="Buat Dompet"
                 isPending={isPendingCreateWallet}
-            />
+            >
+                <Text>Buat Dompet</Text>
+            </ButtonSetup>
         </SafeAreaView>
     )
 }

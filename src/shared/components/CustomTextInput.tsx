@@ -38,7 +38,9 @@ const CustomTextInput = forwardRef<TextInput, AppTextInputProps<FieldValues>>(
 
         return (
             <View className="gap-1">
-                <Text className="font-poppins-semibold">{label}</Text>
+                <Text className="font-poppins-semibold text-gray-800">
+                    {label}
+                </Text>
 
                 <Controller
                     control={control}
@@ -46,13 +48,18 @@ const CustomTextInput = forwardRef<TextInput, AppTextInputProps<FieldValues>>(
                     render={({ field, fieldState }) => (
                         <View className="flex-col">
                             <View className="flex-row items-center rounded-2xl border border-border bg-surface">
+                                {type === "currency" && (
+                                    <Text className="font-poppins-semibold text-gray-500 ml-4">
+                                        Rp
+                                    </Text>
+                                )}
                                 <TextInput
                                     {...props}
                                     ref={ref}
                                     value={
                                         type === "currency"
                                             ? formatCurrency(field.value ?? "")
-                                            : field.value?.toString()
+                                            : (field.value?.toString() ?? "")
                                     }
                                     onChangeText={(text) => {
                                         if (type === "currency")

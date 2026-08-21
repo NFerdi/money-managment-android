@@ -1,18 +1,18 @@
 import { ActivityIndicator, Text, TouchableOpacity } from "react-native"
-import React from "react"
+import React, { ReactNode } from "react"
 
 type Props = {
     onSubmit: () => void
-    textContent: string
     isPending?: boolean
     disabled?: boolean
+    children: ReactNode
 }
 
 export default function ButtonSetup({
     onSubmit,
-    textContent,
-    isPending,
-    disabled,
+    isPending = false,
+    disabled = false,
+    children,
 }: Props) {
     return (
         <TouchableOpacity
@@ -26,9 +26,13 @@ export default function ButtonSetup({
                 {isPending ?? (
                     <ActivityIndicator size="small" color="#ffffffcc" />
                 )}
-                <Text className="text-center text-white font-poppins-semibold">
-                    {isPending ? "Memproses..." : textContent}
-                </Text>
+                {isPending ? (
+                    <Text className="text-center text-white font-poppins-semibold">
+                        Memproses...
+                    </Text>
+                ) : (
+                    children
+                )}
             </Text>
         </TouchableOpacity>
     )

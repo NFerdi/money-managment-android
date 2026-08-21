@@ -9,7 +9,7 @@ import {
 } from "react-native"
 import React, { useEffect, useRef, useState } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
-import ButtonSetup from "../components/ButtonSetup"
+import ButtonSetup from "../../../shared/components/ButtonSubmit"
 import { useUpdateStep } from "../hooks/useUpdateStep"
 import SetupProgres from "../components/SetupProgres"
 import { Ionicons } from "@expo/vector-icons"
@@ -49,10 +49,18 @@ export default function SetupCategoryScreen() {
 
     return (
         <SafeAreaView className="flex-1 bg-green-50 p-4 gap-4">
-            <SetupProgres currentStep="WALLET" />
+            <SetupProgres currentStep="CATEGORY" />
 
             <View className="flex-1">
                 <View className="px-4 py-4 border border-gray-100 rounded-3xl bg-white shadow-md gap-8">
+                    <View className="gap-1 mb-2">
+                        <Text className="text-xl text-center font-poppins-bold text-gray-800">
+                            Sesuaikan Kategori
+                        </Text>
+                        <Text className="text-xs text-center font-poppins-regular text-gray-500">
+                            Pilih kategori sesuai kebutuhan kamu.
+                        </Text>
+                    </View>
                     <CategoryTabSwitcher
                         slideLeft={slideLeft}
                         setActiveTab={setActiveTab}
@@ -69,10 +77,11 @@ export default function SetupCategoryScreen() {
 
             <ButtonSetup
                 onSubmit={onSubmit}
-                textContent="Lanjutkan"
                 isPending={isPendingCreateBulkCategory}
                 disabled={selectedIds.length === 0}
-            />
+            >
+                <Text>Tambahkan Kategori</Text>
+            </ButtonSetup>
         </SafeAreaView>
     )
 }

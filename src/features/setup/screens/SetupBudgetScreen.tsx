@@ -2,7 +2,7 @@ import { View, Text, Keyboard } from "react-native"
 import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import SetupProgres from "../components/SetupProgres"
-import ButtonSetup from "../components/ButtonSetup"
+import ButtonSetup from "../../../shared/components/ButtonSubmit"
 
 export default function WalletSetupScreen() {
     const onSubmit = () => {
@@ -16,7 +16,9 @@ export default function WalletSetupScreen() {
             <View className="flex-1">
                 <View className="px-4 py-4 border border-gray-100 rounded-3xl bg-white shadow-md gap-8"></View>
             </View>
-            <ButtonSetup onSubmit={() => {}} textContent="Buat Dompet" />
+            <ButtonSetup onSubmit={() => {}}>
+                <Text>Buat Budget</Text>
+            </ButtonSetup>
         </SafeAreaView>
     )
 }

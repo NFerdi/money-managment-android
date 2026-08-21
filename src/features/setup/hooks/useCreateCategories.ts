@@ -3,12 +3,22 @@ import { useUpdateStep } from "./useUpdateStep"
 import { useMutation } from "@tanstack/react-query"
 import Toast from "react-native-toast-message"
 import { CategoryApi } from "@/features/category/services/categoryService"
+import { delay } from "@/utils/delay"
 
 export const useCreateCategories = () => {
     const { mutate: mutateUpdateStep } = useUpdateStep()
     return useMutation({
         mutationFn: CategoryApi.createBulkCategory,
-        onSuccess: () => {
+        onSuccess: async () => {
+            Toast.show({
+                type: "success",
+                text1: "Berhasil menambahkan kategori",
+                position: "bottom",
+                visibilityTime: 2000,
+            })
+
+            await delay(2000)
+
             mutateUpdateStep("BUDGET")
         },
         onError: (error) => {
