@@ -2,7 +2,7 @@ import { View, Text, Image } from "react-native"
 import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import SetupProgres from "../components/SetupProgres"
-import { useUpdateStep } from "../hooks/UseUpdateStep"
+import { useUpdateStep } from "../hooks/useUpdateStep"
 import ButtonSetup from "../components/ButtonSetup"
 
 export default function Welcome() {

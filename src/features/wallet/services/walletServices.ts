@@ -1,7 +1,8 @@
 import { api } from "@/config/axios"
-import { ApiResponse } from "../types/apiResponse"
-import { WalletProviderEntity } from "../types/entity/walletProviderEntity"
-import { createWalletForm } from "@/wallet/schemas/CreateWalletSchema"
+import { createWalletForm } from "@/features/wallet/schemas/CreateWalletSchema"
+import { ApiResponse } from "@/shared/types/apiResponse"
+import { WalletProviderEntity } from "@/shared/types/entity/walletProviderEntity"
+import { createBulkCategoryDTO } from "../../category/schemas/CreateBulkCategorySchema"
 
 export const walletApi = {
     getProvider: async () => {

@@ -1,14 +1,15 @@
+import { walletApi } from "@/features/wallet/services/walletServices"
+import { useUpdateStep } from "./useUpdateStep"
 import { useMutation } from "@tanstack/react-query"
 import Toast from "react-native-toast-message"
-import { useUpdateStep } from "./useUpdateStep"
-import { walletApi } from "@/features/wallet/services/walletServices"
+import { CategoryApi } from "@/features/category/services/categoryService"
 
-export const useCreateWallet = () => {
+export const useCreateCategories = () => {
     const { mutate: mutateUpdateStep } = useUpdateStep()
     return useMutation({
-        mutationFn: walletApi.createWallet,
+        mutationFn: CategoryApi.createBulkCategory,
         onSuccess: () => {
-            mutateUpdateStep("CATEGORY")
+            mutateUpdateStep("BUDGET")
         },
         onError: (error) => {
             Toast.show({

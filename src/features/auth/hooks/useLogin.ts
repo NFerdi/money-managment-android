@@ -30,7 +30,6 @@ export const useLogin = () => {
             )
         },
         onError: (error) => {
-            console.log(error)
             Toast.show({
                 type: "error",
                 text1: "Login gagal",

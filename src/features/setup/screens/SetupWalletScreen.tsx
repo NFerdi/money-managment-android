@@ -6,16 +6,15 @@ import ButtonSetup from "../components/ButtonSetup"
 import {
     createWalletForm,
     createWalletSchema,
-} from "@/wallet/schemas/CreateWalletSchema"
+} from "@/features/wallet/schemas/CreateWalletSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import SetupWalletForm from "../components/SetupWalletForm"
 import { useWalletProvider } from "../hooks/useWalletProvider"
 import { useCreateWallet } from "../hooks/useCreateWallet"
-import { useUpdateStep } from "../hooks/UseUpdateStep"
 
 export default function WalletSetupScreen() {
-    const { data: providers, isPending } = useWalletProvider()
+    const { data: providers } = useWalletProvider()
 
     const { control, handleSubmit, watch } = useForm<createWalletForm>({
         resolver: zodResolver(createWalletSchema),
@@ -28,45 +27,32 @@ export default function WalletSetupScreen() {
         },
     })
 
-    const { mutate: mutateCreateWallet } = useCreateWallet()
-    const { mutate: mutateUpdateStep } = useUpdateStep()
+    const { mutate: mutateCreateWallet, isPending: isPendingCreateWallet } =
+        useCreateWallet()
     const onSubmit = (data: createWalletForm) => {
         Keyboard.dismiss()
 
-        mutateCreateWallet(data, {
-            onSuccess: () => {
-                mutateUpdateStep("CATEGORY")
-            },
-        })
+        mutateCreateWallet(data)
     }
 
     return (
-        <SafeAreaView className="flex-1 bg-background">
-            <View className="flex-1 px-5 pb-8 pt-4">
-                <SetupProgres currentStep="WALLET" />
+        <SafeAreaView className="flex-1 bg-green-50 p-4 gap-4">
+            <SetupProgres currentStep="WALLET" />
 
-                <View className="flex-1">
-                    <View className="mt-6 gap-3 px-2">
-                        <Text className="font-poppins text-center text-gray-600">
-                            Mari siapkan akun Anda dalam waktu kurang dari 2
-                            menit.
-                        </Text>
-                    </View>
-
+            <View className="flex-1">
+                <View className="px-4 py-4 border border-gray-100 rounded-3xl bg-white shadow-md gap-8">
                     <SetupWalletForm
                         watch={watch}
                         providers={providers ?? []}
                         control={control}
-                        handleSubmit={() => handleSubmit(onSubmit)}
                     />
                 </View>
-
-                <ButtonSetup
-                    onSubmit={handleSubmit(onSubmit)}
-                    textContent="Mulai Sekarang"
-                    isPending={isPending}
-                />
             </View>
+            <ButtonSetup
+                onSubmit={handleSubmit(onSubmit)}
+                textContent="Buat Dompet"
+                isPending={isPendingCreateWallet}
+            />
         </SafeAreaView>
     )
 }

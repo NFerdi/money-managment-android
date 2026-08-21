@@ -16,7 +16,8 @@ import { GestureHandlerRootView } from "react-native-gesture-handler"
 const queryClient = new QueryClient()
 
 export default function RootLayout() {
-    const { isReady, isSplashVisible, hideSplash } = useAppInitialization()
+    const { isReady, isSplashVisible, hideSplash, sessionError } =
+        useAppInitialization()
 
     if (!isReady) {
         return null

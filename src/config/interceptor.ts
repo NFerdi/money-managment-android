@@ -16,7 +16,9 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (axios.isAxiosError(error)) {
-            error.message = error.response?.data?.message ?? "Terjadi kesalahan"
+            if (error.response) {
+                error.message = error.response?.data?.message ?? error.message
+            }
         }
 
         return Promise.reject(error)

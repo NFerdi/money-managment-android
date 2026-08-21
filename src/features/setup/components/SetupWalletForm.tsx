@@ -1,6 +1,6 @@
 import { TextInput, View } from "react-native"
 import React, { useMemo, useRef } from "react"
-import { createWalletForm } from "@/wallet/schemas/CreateWalletSchema"
+import { createWalletForm } from "@/features/wallet/schemas/CreateWalletSchema"
 import CustomTextInput from "@/shared/components/CustomTextInput"
 import { Control, UseFormWatch } from "react-hook-form"
 import { WalletProviderEntity } from "@/shared/types/entity/walletProviderEntity"
@@ -10,7 +10,6 @@ import { SelectInputRef } from "@/shared/components/CustomSelectInput/SelectInpu
 
 type Props = {
     control: Control<createWalletForm>
-    handleSubmit: () => void
     providers: WalletProviderEntity[]
     watch: UseFormWatch<createWalletForm>
 }
