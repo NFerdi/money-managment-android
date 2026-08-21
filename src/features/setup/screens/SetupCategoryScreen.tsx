@@ -1,22 +1,10 @@
-import {
-    View,
-    Text,
-    Keyboard,
-    Image,
-    TouchableOpacity,
-    Animated,
-    ScrollView,
-} from "react-native"
-import React, { useEffect, useRef, useState } from "react"
+import { View, Text, Keyboard } from "react-native"
+import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import ButtonSetup from "../../../shared/components/ButtonSubmit"
-import { useUpdateStep } from "../hooks/useUpdateStep"
 import SetupProgres from "../components/SetupProgres"
-import { Ionicons } from "@expo/vector-icons"
-import { listCategory } from "../../category/constants/listCategory"
 import { createBulkCategoryDTO } from "@/features/category/schemas/CreateBulkCategorySchema"
 import { useCreateCategories } from "../hooks/useCreateCategories"
-import { DefaultCategory } from "@/features/category/enitity/category.entity"
 import { useCategorySelection } from "../hooks/useCategorySelection"
 import CategoryTabSwitcher from "../components/CategoryTabSwitcher"
 import CategoryGridCard from "../components/CategoryGridCard"

@@ -5,5 +5,6 @@ export const ROUTES = {
     WALLET_SETUP: "/(setup)/SetupWallet",
     CATEGORY_SETUP: "/(setup)/SetupCategory",
     BUDGET_SETUP: "/(setup)/SetupBudget",
-    WELCOME: "/(setup)/Welcome",
+    WELCOME: "/(setup)/SetupWelcome",
+    COMPLETED: "/(setup)/SetupCompleted",
 } as const

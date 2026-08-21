@@ -5,6 +5,7 @@ export const SETUPROUTES = {
     WALLET: ROUTES.WALLET_SETUP,
     CATEGORY: ROUTES.CATEGORY_SETUP,
     BUDGET: ROUTES.BUDGET_SETUP,
+    COMPLETED: ROUTES.COMPLETED,
 } as const
 
 export const getSetupRoute = (step?: string) => {

@@ -14,7 +14,7 @@ interface AppTextInputProps<T extends FieldValues> extends TextInputProps {
     control: Control<T>
     name: Path<T>
     label: string
-    placeholder: string
+    placeholder?: string
     type: "generic" | "password" | "currency"
 }
 
@@ -73,7 +73,7 @@ const CustomTextInput = forwardRef<TextInput, AppTextInputProps<FieldValues>>(
                                     secureTextEntry={
                                         type === "password" && visible
                                     }
-                                    className="flex-1 px-4 py-4 text-gray-800"
+                                    className="flex-1 px-4 py-4 text-gray-800 text-sm"
                                 />
 
                                 {type === "password" && (
