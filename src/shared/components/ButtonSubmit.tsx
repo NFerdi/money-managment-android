@@ -8,7 +8,7 @@ type Props = {
     children: ReactNode
 }
 
-export default function ButtonSetup({
+export default function ButtonSubmit({
     onSubmit,
     isPending = false,
     disabled = false,

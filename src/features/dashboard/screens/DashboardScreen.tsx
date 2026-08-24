@@ -1,25 +1,70 @@
-import { View, Text, TouchableOpacity } from "react-native"
-import React from "react"
+import { ScrollView, Text, TouchableOpacity, View } from "react-native"
+import React, { useEffect, useRef, useState } from "react"
 import { useAuthStore } from "@/features/auth/store/authStore"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { useLogout } from "@/features/auth/hooks/useLogout"
-import second from "@expo/vector-icons/MaterialCommunityIcons"
+import BottomBar from "@/shared/components/BottomBar/BottomBar"
+import DashboardHeader from "../components/DashboardHeader"
+import HeroBalanceCard from "../components/HeroBalanceCard"
+import BudgetTrackerCard from "../components/BudgetTrackerCard"
+import WalletSection from "../components/WalletSection"
+import RecentTransaction from "../components/RecentTransaction"
+import { Ionicons } from "@expo/vector-icons"
+import QuickActionSection from "../components/QuickActionSection"
+import { useDashboard } from "../hooks/useDashboard"
+import CreateTransactionBottomSheet, {
+    CreateTransactionBottomSheetRef,
+} from "@/features/transaction/screens/CreateTransactionBottomSheet"
+import { BottomSheetModal } from "@gorhom/bottom-sheet"
 
 export default function DashboardScreen() {
-    const user = useAuthStore((state) => state.user)
-    const { handleLogout } = useLogout()
-    return (
-        <SafeAreaView className="flex-1 bg-white">
-            <View className="p-4 w-full h-full">
-                <Text>Hallo {user?.username}</Text>
+    const insets = useSafeAreaInsets()
+    const paddingBottom = 40 + insets.bottom + 20
 
-                <TouchableOpacity
-                    onPress={handleLogout}
-                    className="p-4 bg-red-500"
-                >
-                    <Text>Logout</Text>
-                </TouchableOpacity>
-            </View>
+    const bottomSheetRef = useRef<CreateTransactionBottomSheetRef>(null)
+    const user = useAuthStore((state) => state.user)
+    const {
+        data: dataDashboardOverview,
+        isPending: isPendingDashboardOverview,
+    } = useDashboard()
+
+    return (
+        <SafeAreaView className="flex-1 bg-gray-50">
+            <ScrollView
+                contentContainerStyle={{ paddingBottom: paddingBottom }}
+            >
+                <View className="p-4 w-full h-full gap-6">
+                    <DashboardHeader user={user} />
+
+                    <HeroBalanceCard
+                        balance={dataDashboardOverview?.balance}
+                        cashflow={dataDashboardOverview?.cashflow}
+                    />
+
+                    <QuickActionSection />
+
+                    <BudgetTrackerCard
+                        budgetOverviewDashboard={dataDashboardOverview?.budget}
+                        cashflowOverviewDashboard={
+                            dataDashboardOverview?.cashflow
+                        }
+                    />
+
+                    <WalletSection
+                        wallets={dataDashboardOverview?.balance.wallets}
+                    />
+
+                    <RecentTransaction
+                        transactions={
+                            dataDashboardOverview?.recent_transactions
+                        }
+                    />
+                </View>
+            </ScrollView>
+            <BottomBar
+                onOpenAddTransaction={() => bottomSheetRef.current?.present()}
+            />
+            <CreateTransactionBottomSheet ref={bottomSheetRef} />
         </SafeAreaView>
     )
 }

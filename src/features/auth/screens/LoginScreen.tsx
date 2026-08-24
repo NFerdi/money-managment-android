@@ -1,33 +1,20 @@
-import {
-    View,
-    Text,
-    Image,
-    TouchableOpacity,
-    ActivityIndicator,
-    Keyboard,
-} from "react-native"
-import React, { useRef } from "react"
+import { View, Text, TouchableOpacity, Keyboard } from "react-native"
+import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
-import CustomTextInput from "@/shared/components/CustomTextInput"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoginForm, loginSchema } from "../schemas/loginSchema"
 import { useLogin } from "../hooks/useLogin"
 import { router } from "expo-router"
 import { ROUTES } from "@/shared/constants/routeConstant"
-import { TextInput } from "react-native-gesture-handler"
 import AuthHeader from "../components/AuthHeader"
 import AuthLoginForm from "../components/AuthLoginForm"
-import ButtonSetup from "@/shared/components/ButtonSubmit"
+import ButtonSubmit from "@/shared/components/ButtonSubmit"
 
 export default function LoginScreen() {
     const { control, handleSubmit } = useForm<LoginForm>({
         resolver: zodResolver(loginSchema),
         mode: "onTouched",
-        defaultValues: {
-            email: "ferdi@test.com",
-            password: "ferdidoang",
-        },
     })
 
     const { mutate, isPending } = useLogin()
@@ -48,12 +35,12 @@ export default function LoginScreen() {
                 />
 
                 <View className="gap-3">
-                    <ButtonSetup
+                    <ButtonSubmit
                         onSubmit={handleSubmit(onSubmit)}
                         isPending={isPending}
                     >
                         <Text>Login sekarang</Text>
-                    </ButtonSetup>
+                    </ButtonSubmit>
                     <View className="flex-row gap-1 justify-center p-2">
                         <Text className="font-poppins">Belum punya akun?</Text>
                         <TouchableOpacity

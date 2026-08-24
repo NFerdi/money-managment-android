@@ -2,7 +2,7 @@ import { View, Text, Keyboard, TouchableOpacity } from "react-native"
 import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import SetupProgres from "../components/SetupProgres"
-import ButtonSetup from "../../../shared/components/ButtonSubmit"
+import ButtonSubmit from "../../../shared/components/ButtonSubmit"
 import { UseBudgetScreen } from "../hooks/UseBudgetScreen"
 import {
     CreateBudgetDTO,
@@ -129,9 +129,9 @@ export default function WalletSetupScreen() {
                     )}
                 </View>
             </View>
-            <ButtonSetup onSubmit={handleSubmit(onSubmit)}>
+            <ButtonSubmit onSubmit={handleSubmit(onSubmit)}>
                 <Text>Buat Budget</Text>
-            </ButtonSetup>
+            </ButtonSubmit>
         </SafeAreaView>
     )
 }

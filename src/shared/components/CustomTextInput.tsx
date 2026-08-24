@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     TextInputProps,
 } from "react-native"
+import { BottomSheetTextInput } from "@gorhom/bottom-sheet"
 import { Control, Controller, FieldValues, Path } from "react-hook-form"
 import React, { forwardRef, useState } from "react"
 import Feather from "@react-native-vector-icons/feather"
@@ -16,6 +17,7 @@ interface AppTextInputProps<T extends FieldValues> extends TextInputProps {
     label: string
     placeholder?: string
     type: "generic" | "password" | "currency"
+    bottomSheetInput?: boolean
 }
 
 type CustomTextInputComponent = <T extends FieldValues>(
@@ -30,6 +32,7 @@ const CustomTextInput = forwardRef<TextInput, AppTextInputProps<FieldValues>>(
             label,
             type = "generic",
             placeholder,
+            bottomSheetInput = false,
             ...props
         }: AppTextInputProps<T>,
         ref: React.ForwardedRef<TextInput>
@@ -53,28 +56,62 @@ const CustomTextInput = forwardRef<TextInput, AppTextInputProps<FieldValues>>(
                                         Rp
                                     </Text>
                                 )}
-                                <TextInput
-                                    {...props}
-                                    ref={ref}
-                                    value={
-                                        type === "currency"
-                                            ? formatCurrency(field.value ?? "")
-                                            : (field.value?.toString() ?? "")
-                                    }
-                                    onChangeText={(text) => {
-                                        if (type === "currency")
-                                            field.onChange(
-                                                Number(text.replace(/\D/g, ""))
-                                            )
-                                        else field.onChange(text)
-                                    }}
-                                    onBlur={field.onBlur}
-                                    placeholder={placeholder}
-                                    secureTextEntry={
-                                        type === "password" && visible
-                                    }
-                                    className="flex-1 px-4 py-4 text-gray-800 text-sm"
-                                />
+                                {bottomSheetInput ? (
+                                    <BottomSheetTextInput
+                                        {...props}
+                                        value={
+                                            type === "currency"
+                                                ? formatCurrency(
+                                                      field.value ?? ""
+                                                  )
+                                                : (field.value?.toString() ??
+                                                  "")
+                                        }
+                                        onChangeText={(text) => {
+                                            if (type === "currency")
+                                                field.onChange(
+                                                    Number(
+                                                        text.replace(/\D/g, "")
+                                                    )
+                                                )
+                                            else field.onChange(text)
+                                        }}
+                                        onBlur={field.onBlur}
+                                        placeholder={placeholder}
+                                        secureTextEntry={
+                                            type === "password" && visible
+                                        }
+                                        className="flex-1 px-4 py-4 text-gray-800 text-sm"
+                                    />
+                                ) : (
+                                    <TextInput
+                                        {...props}
+                                        ref={ref}
+                                        value={
+                                            type === "currency"
+                                                ? formatCurrency(
+                                                      field.value ?? ""
+                                                  )
+                                                : (field.value?.toString() ??
+                                                  "")
+                                        }
+                                        onChangeText={(text) => {
+                                            if (type === "currency")
+                                                field.onChange(
+                                                    Number(
+                                                        text.replace(/\D/g, "")
+                                                    )
+                                                )
+                                            else field.onChange(text)
+                                        }}
+                                        onBlur={field.onBlur}
+                                        placeholder={placeholder}
+                                        secureTextEntry={
+                                            type === "password" && visible
+                                        }
+                                        className="flex-1 px-4 py-4 text-gray-800 text-sm"
+                                    />
+                                )}
 
                                 {type === "password" && (
                                     <TouchableOpacity

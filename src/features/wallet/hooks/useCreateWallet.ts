@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import Toast from "react-native-toast-message"
-import { useUpdateStep } from "./useUpdateStep"
+import { useUpdateStep } from "../../setup/hooks/useUpdateStep"
 import { walletApi } from "@/features/wallet/services/walletServices"
 import { delay } from "@/utils/delay"
 

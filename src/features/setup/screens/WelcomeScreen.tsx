@@ -3,7 +3,7 @@ import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import SetupProgres from "../components/SetupProgres"
 import { useUpdateStep } from "../hooks/useUpdateStep"
-import ButtonSetup from "../../../shared/components/ButtonSubmit"
+import ButtonSubmit from "../../../shared/components/ButtonSubmit"
 import { Ionicons } from "@expo/vector-icons"
 
 export default function Welcome() {
@@ -74,12 +74,12 @@ export default function Welcome() {
                     </View>
                 </View>
 
-                <ButtonSetup
+                <ButtonSubmit
                     onSubmit={() => mutate("WALLET")}
                     isPending={isPending}
                 >
                     <Text>Mulai Sekarang</Text>
-                </ButtonSetup>
+                </ButtonSubmit>
             </View>
         </SafeAreaView>
     )

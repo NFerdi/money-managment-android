@@ -1,7 +1,7 @@
 import { View, Text, Keyboard } from "react-native"
 import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
-import ButtonSetup from "../../../shared/components/ButtonSubmit"
+import ButtonSubmit from "../../../shared/components/ButtonSubmit"
 import SetupProgres from "../components/SetupProgres"
 import { createBulkCategoryDTO } from "@/features/category/schemas/CreateBulkCategorySchema"
 import { useCreateCategories } from "../hooks/useCreateCategories"
@@ -63,13 +63,13 @@ export default function SetupCategoryScreen() {
                 </View>
             </View>
 
-            <ButtonSetup
+            <ButtonSubmit
                 onSubmit={onSubmit}
                 isPending={isPendingCreateBulkCategory}
                 disabled={selectedIds.length === 0}
             >
                 <Text>Tambahkan Kategori</Text>
-            </ButtonSetup>
+            </ButtonSubmit>
         </SafeAreaView>
     )
 }

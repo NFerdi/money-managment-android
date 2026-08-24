@@ -1,7 +1,7 @@
 import { SetupStepEnum } from "@/features/account/enitity/account.entity"
 import { create } from "zustand"
 
-interface User {
+export interface User {
     id: number
     username: string
     email: string

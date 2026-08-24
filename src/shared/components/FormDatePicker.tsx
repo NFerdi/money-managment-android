@@ -28,7 +28,7 @@ export default function FormDatePicker<T extends FieldValues>({
             name={name}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <View className="gap-1.5 flex-1">
-                    <Text className="font-poppins-semibold text-xs text-gray-700">
+                    <Text className="font-poppins-semibold text-gray-800">
                         {label}
                     </Text>
 
@@ -37,7 +37,7 @@ export default function FormDatePicker<T extends FieldValues>({
                         onPress={() => setIsOpen(true)}
                         className="flex-row items-center justify-between border border-gray-200 rounded-2xl px-3 py-2.5 bg-gray-50/50 active:border-green-800"
                     >
-                        <Text className="font-poppins-medium text-xs text-gray-800">
+                        <Text className="font-poppins-medium text-sm text-gray-800">
                             {isoDate(value)}
                         </Text>
                         <Ionicons
@@ -57,8 +57,8 @@ export default function FormDatePicker<T extends FieldValues>({
                         isVisible={isOpen}
                         mode="date"
                         date={value || new Date()}
-                        minimumDate={minimumDate}
-                        maximumDate={maximumDate}
+                        {...(minimumDate && { minimumDate })}
+                        {...(maximumDate && { maximumDate })}
                         onConfirm={(selectedDate) => {
                             setIsOpen(false)
                             onChange(selectedDate)

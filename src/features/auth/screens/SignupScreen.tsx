@@ -9,7 +9,7 @@ import { router } from "expo-router"
 import { ROUTES } from "@/shared/constants/routeConstant"
 import AuthHeader from "../components/AuthHeader"
 import AuthSignupForm from "../components/AuthSignupForm"
-import ButtonSetup from "@/shared/components/ButtonSubmit"
+import ButtonSubmit from "@/shared/components/ButtonSubmit"
 
 export default function SignupScreen() {
     const { control, handleSubmit } = useForm<SignupForm>({
@@ -34,12 +34,12 @@ export default function SignupScreen() {
                 />
 
                 <View className="gap-3">
-                    <ButtonSetup
+                    <ButtonSubmit
                         onSubmit={handleSubmit(onSubmit)}
                         isPending={isPending}
                     >
                         <Text>Daftar sekarang</Text>
-                    </ButtonSetup>
+                    </ButtonSubmit>
                     <View className="flex-row gap-1 justify-center p-2">
                         <Text className="font-poppins">Sudah punya akun?</Text>
 

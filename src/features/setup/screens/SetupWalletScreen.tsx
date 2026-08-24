@@ -2,7 +2,7 @@ import { View, Text, Keyboard } from "react-native"
 import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import SetupProgres from "../components/SetupProgres"
-import ButtonSetup from "../../../shared/components/ButtonSubmit"
+import ButtonSubmit from "../../../shared/components/ButtonSubmit"
 import {
     createWalletForm,
     createWalletSchema,
@@ -10,8 +10,8 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import SetupWalletForm from "../components/SetupWalletForm"
-import { useWalletProvider } from "../hooks/useWalletProvider"
-import { useCreateWallet } from "../hooks/useCreateWallet"
+import { useWalletProvider } from "../../wallet/hooks/useWalletProvider"
+import { useCreateWallet } from "../../wallet/hooks/useCreateWallet"
 
 export default function WalletSetupScreen() {
     const { data: providers } = useWalletProvider()
@@ -57,12 +57,12 @@ export default function WalletSetupScreen() {
                     />
                 </View>
             </View>
-            <ButtonSetup
+            <ButtonSubmit
                 onSubmit={handleSubmit(onSubmit)}
                 isPending={isPendingCreateWallet}
             >
                 <Text>Buat Dompet</Text>
-            </ButtonSetup>
+            </ButtonSubmit>
         </SafeAreaView>
     )
 }
